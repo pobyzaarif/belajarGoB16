@@ -1,0 +1,33 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"os"
+
+	_ "github.com/joho/godotenv/autoload"
+	"google.golang.org/genai"
+)
+
+func main() {
+	ctx := context.Background()
+	geminiConfig := genai.ClientConfig{
+		APIKey: os.Getenv("GEMINI_API_KEY"),
+	}
+	client, err := genai.NewClient(ctx, &geminiConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	result, err := client.Models.GenerateContent(
+		ctx,
+		"gemini-2.5-flash",
+		genai.Text("Explain how AI works in a few words"),
+		nil,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(result.Text())
+}
