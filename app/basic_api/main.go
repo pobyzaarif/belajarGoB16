@@ -56,6 +56,7 @@ func main() {
 		students, err := GetStudents(db)
 		if err != nil {
 			fmt.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
 			_ = json.NewEncoder(w).Encode("error processing request")
 		}
 
@@ -67,6 +68,7 @@ func main() {
 		posts, err := RequestGetPostsToJSONPlaceholder()
 		if err != nil {
 			fmt.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
 			_ = json.NewEncoder(w).Encode("error processing request")
 		}
 		posts = posts[90:] // assume i onluy need 10 record from post
