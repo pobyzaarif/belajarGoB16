@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "94f299bb-aab6-48a0-8c02-daa8bee5b6a4",
+    "name": "belajarGoB16",
+    "description": "base_url (**local**): http://localhost:8000\n\nbase_url (**staging**): https://example-stag.com\n\nbase_url (**production**): https://example-prod.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29552530"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/students",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "students"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All students [200]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/students",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "students"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 May 2026 14:10:49 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "229"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"alice\",\n        \"age\": 31\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Bob\",\n        \"age\": 22\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Charlie\",\n        \"age\": 19\n    },\n    {\n        \"id\": 5,\n        \"name\": \"test\",\n        \"age\": 1\n    },\n    {\n        \"id\": 6,\n        \"name\": \"poby\",\n        \"age\": 20\n    },\n    {\n        \"id\": 10,\n        \"name\": \"pob\",\n        \"age\": 21\n    },\n    {\n        \"id\": 11,\n        \"name\": \"baru\",\n        \"age\": 30\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"example\",\n    \"age\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/students",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "students"
+              ]
+            },
+            "description": "**name** minimum 3 character and maximum 10.\n\n**age** mininal 1"
+          },
+          "response": [
+            {
+              "name": "Create Student [201]",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"example\",\n    \"age\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/students",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "students"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 May 2026 14:12:47 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "10"
+                }
+              ],
+              "cookie": [],
+              "body": "\"Created\""
+            },
+            {
+              "name": "Create Student wrong json [400]",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"example\"\n    \"age\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/students",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "students"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 May 2026 14:13:10 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "21"
+                }
+              ],
+              "cookie": [],
+              "body": "\"error payload body\""
+            },
+            {
+              "name": "Create Student Spec not valid [400]",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"ex\",\n    \"age\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/students",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "students"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 May 2026 14:20:48 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "32"
+                }
+              ],
+              "cookie": [],
+              "body": "\"error specification not match\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Index",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get Index [200]",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 28 May 2026 14:08:25 GMT"
+            },
+            {
+              "key": "Content-Length",
+              "value": "14"
+            }
+          ],
+          "cookie": [],
+          "body": "\"hello world\""
+        }
+      ]
+    },
+    {
+      "name": "Get Panic",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/panic",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "panic"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get Panic [500]",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/panic",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "panic"
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 28 May 2026 14:09:57 GMT"
+            },
+            {
+              "key": "Content-Length",
+              "value": "27"
+            }
+          ],
+          "cookie": [],
+          "body": "\"panic processing request\""
+        }
+      ]
+    }
+  ]
+}
