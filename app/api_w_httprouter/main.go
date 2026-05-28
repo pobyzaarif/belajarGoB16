@@ -9,11 +9,14 @@ import (
 	"os"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/julienschmidt/httprouter"
 	"github.com/pobyzaarif/belajarGoB16/util/db"
 )
+
+var v = validator.New()
 
 func main() {
 	db, err := db.InitDB()
@@ -69,6 +72,15 @@ func main() {
 			return
 		}
 
+		// validate body request
+		errValidation := v.Struct(student)
+		if errValidation != nil {
+			fmt.Println(errValidation)
+			w.WriteHeader(http.StatusBadRequest)
+			_ = json.NewEncoder(w).Encode("error specification not match")
+			return
+		}
+
 		// processing request
 		err = CreateStudent(db, student.Name, student.Age)
 		if err != nil {
@@ -96,8 +108,8 @@ func main() {
 
 type Student struct {
 	ID   int    `json:"id"`
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Name string `json:"name" validate:"max=10,min=3"`
+	Age  int    `json:"age" validate:"required"`
 }
 
 func GetStudents(h *sql.DB) ([]Student, error) {
