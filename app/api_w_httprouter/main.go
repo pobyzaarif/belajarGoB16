@@ -58,6 +58,11 @@ func main() {
 		_ = json.NewEncoder(w).Encode(students)
 	})
 
+	router.GET("/test", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		w.Header().Set("Content-Type", "application/json")
+		_ = json.NewEncoder(w).Encode("test")
+	})
+
 	router.POST("/students", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		w.Header().Set("Content-Type", "application/json")
 
